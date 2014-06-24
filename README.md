@@ -2,25 +2,20 @@ sonicTransfer
 =============
 
 
-
-Frequency-shift keying (FSK)
-
-(FAV!)
-
-http://en.wikipedia.org/wiki/Frequency-shift_keying
+Modulation
+----------
 
 
-On-off keying (OOK)
-
-http://en.wikipedia.org/wiki/On-off_keying
-
-
-Amplitude-shift keying (ASK)
-
-http://en.wikipedia.org/wiki/Amplitude-shift_keying
+- Frequency-shift keying (FSK)
+  http://en.wikipedia.org/wiki/Frequency-shift_keying
 
 
-http://en.wikipedia.org/wiki/Forward_error_correction
+- On-off keying (OOK)
+  http://en.wikipedia.org/wiki/On-off_keying
+
+
+- Amplitude-shift keying (ASK)
+  http://en.wikipedia.org/wiki/Amplitude-shift_keying
 
 
 Demodulation
@@ -35,3 +30,9 @@ more advance:
 - Sliding DFT (FFT)
 - Sliding Görtzel Filter
 - Phase Locked Loop
+
+
+Error correction:
+-----------------
+
+- FEC http://en.wikipedia.org/wiki/Forward_error_correction
