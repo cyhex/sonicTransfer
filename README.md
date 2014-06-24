@@ -21,3 +21,17 @@ http://en.wikipedia.org/wiki/Amplitude-shift_keying
 
 
 http://en.wikipedia.org/wiki/Forward_error_correction
+
+
+Demodulation
+------------
+
+Zero crossings:
+
+https://code.google.com/p/musicg/source/browse/src/com/musicg/math/statistics/ZeroCrossingRate.java?r=89780e17b98770f9630e4974c73a4d0641269735
+
+more advance:
+
+- Sliding DFT (FFT)
+- Sliding Görtzel Filter
+- Phase Locked Loop
