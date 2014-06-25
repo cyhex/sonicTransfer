@@ -10,16 +10,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private EditText fq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fq = (EditText) findViewById(R.id.fq);
     }
 
 
@@ -32,28 +39,24 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onListenSound(View v) {
-        AudioRecord recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100,
-                AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_8BIT, 4096);
-        recorder.startRecording();
 
     }
 
     public void onPlaySound(View v) {
         String binString = toBinaryString("a");
         final int sampleRate = 44100;
-        final int numSamples = binString.length();
+        final int freqOfTone = Integer.parseInt(fq.getText().toString());
+        final int numSamples = sampleRate * 2;
         ByteArrayOutputStream sample = new ByteArrayOutputStream();
 
-        for (char c : binString.toCharArray()) {
-            if (c == '0') {
-                sample.write(1);
-                sample.write(0);
-                sample.write(0);
-            } else {
-                sample.write(1);
-                sample.write(1);
-                sample.write(0);
-            }
+        int frameSize = (sampleRate/freqOfTone);
+        double frameVal = 0;
+
+        // fill out the array
+        for (int i = 0; i < numSamples; ++i) {
+            frameVal = Math.sin(2 * Math.PI * i / (sampleRate/freqOfTone));
+            sample.write((byte) (frameVal * 127));
+
         }
 
         final AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
@@ -61,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
                 AudioFormat.ENCODING_PCM_8BIT, numSamples,
                 AudioTrack.MODE_STATIC);
 
-        audioTrack.write(sample.toByteArray(), 0, sample.size());
+        audioTrack.write(sample.toByteArray() , 0, sample.size());
         audioTrack.play();
 
     }
